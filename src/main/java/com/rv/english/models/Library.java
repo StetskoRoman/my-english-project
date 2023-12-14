@@ -26,4 +26,6 @@ public class Library {
 
     @OneToMany
     private List<Listing> listingSet = new ArrayList<>();
+
+    private Long totalWordsInLibrary;
 }

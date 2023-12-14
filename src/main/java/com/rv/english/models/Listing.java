@@ -18,9 +18,15 @@ public class Listing {
     private Long id;
 
     private String listingName;
+
+    private Long totalAmountWords;
 //(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "listing")
+//     @JoinColumn(name = "word_id")
     @OneToMany
     List<Word> words = new ArrayList<>();
+
+    @ManyToOne
+    Library library;
 
 
 }
