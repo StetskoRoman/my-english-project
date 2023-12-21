@@ -3,13 +3,10 @@ package com.rv.english.models;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Getter
@@ -17,15 +14,18 @@ import java.util.Set;
 @NoArgsConstructor
 public class Library {
 
-
     @Id
     private Long id;
 
-    @OneToOne()
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @MapsId
+    @JoinColumn(name = "id")
     private Account account;
 
+
     @OneToMany
-    private List<Listing> listingSet = new ArrayList<>();
+    private List<Listing> listingList = new ArrayList<>();
 
     private Long totalWordsInLibrary;
+
 }

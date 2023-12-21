@@ -3,7 +3,7 @@
   <html lang="en"/>
   <head>
     <meta charset="UTF-8"/>
-    <title>Society app</title>
+    <title>English for anyone</title>
     <#--        указываем стили-->
 <#--    <link rel="stylesheet" href="/static/style.css"/>-->
     <#--        https://getbootstrap.com/docs/4.1/getting-started/introduction/ бутстрап будет учитывать плотность точек на устройстве, т.е делать крупнее на мобилке и меньше на ноуте-->

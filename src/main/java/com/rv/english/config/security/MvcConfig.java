@@ -1,5 +1,6 @@
 package com.rv.english.config.security;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -12,9 +13,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 public class MvcConfig implements WebMvcConfigurer {
 
-//    здесь должны описываться страницы без логики какой либо
+
+    //    здесь должны описываться страницы без логики какой либо
     public void addViewControllers(ViewControllerRegistry registry) {
+
         registry.addViewController("/login").setViewName("login");
+//        registry.addViewController("/registration").setViewName("registration");
     }
 
 }

@@ -1,7 +1,8 @@
 package com.rv.english.config.security;
 
 //import com.rv.english.services.AccountService;
-import lombok.RequiredArgsConstructor;
+
+import com.rv.english.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,12 +12,8 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 
@@ -25,18 +22,18 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class WebSecurityConfig {
 
+//вызывают циклическую петлю
+    @Autowired
+    private AccountService accountService;
 
-//    @Autowired
-//    private AccountService accountService;
-//
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/hello").permitAll()
+                        .requestMatchers("/", "/hello", "/registration").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
@@ -57,14 +54,14 @@ public class WebSecurityConfig {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
-//    @Bean
-//    public DaoAuthenticationProvider daoAuthenticationProvider() {
-//        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-////        пароль зашифруется по ходу
-//        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
-//        daoAuthenticationProvider.setUserDetailsService(accountService);
-//        return daoAuthenticationProvider;
-//    }
+    @Bean
+    public DaoAuthenticationProvider daoAuthenticationProvider() {
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+//        пароль зашифруется по ходу
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
+        daoAuthenticationProvider.setUserDetailsService(accountService);
+        return daoAuthenticationProvider;
+    }
 
     @Bean
     public PasswordEncoder getPasswordEncoder() {
@@ -73,17 +70,16 @@ public class WebSecurityConfig {
     }
 
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        UserDetails user =
-                User.withDefaultPasswordEncoder()
-                        .username("a")
-                        .password("1")
-                        .roles("ADMIN")
-                        .build();
-
-        return new InMemoryUserDetailsManager(user);
-
-    }
+//    @Bean
+//    public UserDetailsService userDetailsService() {
+//        UserDetails user =
+//                User.withDefaultPasswordEncoder()
+//                        .username("a")
+//                        .password("1")
+//                        .roles("ADMIN")
+//                        .build();
+//
+//        return new InMemoryUserDetailsManager(user);
+//    }
 
 }

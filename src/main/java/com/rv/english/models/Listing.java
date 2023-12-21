@@ -22,10 +22,10 @@ public class Listing {
     private Long totalAmountWords;
 //(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "listing")
 //     @JoinColumn(name = "word_id")
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     List<Word> words = new ArrayList<>();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     Library library;
 
 

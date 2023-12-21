@@ -4,6 +4,9 @@ package com.rv.english.models;
 //import com.rv.english.models.enums.AccountRoles;
 import com.rv.english.models.enums.AccountRoles;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,10 +30,16 @@ public class Account implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String accountName;
 
+    @NotBlank(message = "your name can`t be empty")
+    private String accountName;
+    @NotNull
+    @NotBlank(message = "password can`t be empty")
     private String password;
 
+
+    @NotBlank
+    @Email
     private String email;
 
     private String homeLang;
@@ -38,6 +47,15 @@ public class Account implements UserDetails {
     private String activationCode;
 
     private Long countBadWords;
+
+    private Boolean active;
+
+    private Boolean visibleWords;
+
+    @Transient
+    public boolean isAdmin() {
+        return roles.contains(AccountRoles.ADMIN);
+    }
 
 //    вспомогательная таблица
     @ElementCollection(targetClass = AccountRoles.class, fetch = FetchType.EAGER)
@@ -47,10 +65,12 @@ public class Account implements UserDetails {
     private List<AccountRoles> roles;
 
 
-    @OneToOne
-    private Library library;
+//    id в library будет совпадать с id акка, соответственно незачем делать отдельный стобец со связью @MapsId в library добавить, тут зависимость по хожу не нужна
+//    @OneToOne(cascade = CascadeType.ALL,  mappedBy = "account")
+//    private Library library;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "account")
+
+    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "account")
     private List<Photo> photos = new ArrayList<>();
 
 

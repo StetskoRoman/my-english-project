@@ -1,11 +1,7 @@
 package com.rv.english.controllers;
 
-import com.rv.english.models.Account;
-//import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.Map;
 
 @Controller
 public class MenuController {
@@ -25,7 +21,7 @@ public class MenuController {
 //    }
 //
 //    @GetMapping("/login")
-//    public String login(Map<String, Object> model) {
+//    public String login() {
 //        return "login";
 //    }
 
