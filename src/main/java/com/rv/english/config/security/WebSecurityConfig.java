@@ -2,7 +2,7 @@ package com.rv.english.config.security;
 
 //import com.rv.english.services.AccountService;
 
-import com.rv.english.services.AccountService;
+import com.rv.english.services.CustomAccountDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +24,7 @@ public class WebSecurityConfig {
 
     //вызывают циклическую петлю
     @Autowired
-    private AccountService accountService;
+    private CustomAccountDetailsService customAccountDetailsService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -60,7 +60,7 @@ public class WebSecurityConfig {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
 //        пароль зашифруется по ходу
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
-        daoAuthenticationProvider.setUserDetailsService(accountService);
+        daoAuthenticationProvider.setUserDetailsService(customAccountDetailsService);
         return daoAuthenticationProvider;
     }
 

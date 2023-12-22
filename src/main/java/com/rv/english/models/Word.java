@@ -20,7 +20,7 @@ public class Word {
     private String wordName;
     private String explanation;
     private String example;
-    boolean isSaved;
+    private boolean isSaved;
 
     private Long countShow;
     private Long countAdds;

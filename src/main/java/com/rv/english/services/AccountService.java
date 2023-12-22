@@ -2,24 +2,18 @@ package com.rv.english.services;
 
 import com.rv.english.models.Account;
 import com.rv.english.models.Library;
-import com.rv.english.models.Listing;
 import com.rv.english.models.enums.AccountRoles;
 import com.rv.english.models.repositories.AccountRepo;
 import com.rv.english.models.repositories.LibraryRepo;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class AccountService implements UserDetailsService {
+public class AccountService  {
 
     private final AccountRepo accountRepo;
 
@@ -27,15 +21,6 @@ public class AccountService implements UserDetailsService {
 
     private final PasswordEncoder passwordEncoder;
 
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Account account = accountRepo.findByEmail(email);
-
-        if (account == null) {
-            throw new UsernameNotFoundException("User not found");
-        }
-        return account;
-    }
 
     public boolean createAccount(Account account) {
         String accountMail = account.getEmail();
@@ -47,8 +32,8 @@ public class AccountService implements UserDetailsService {
         account.setActive(true);
         account.setRoles(Collections.singletonList(AccountRoles.USER));   //change role to ADMIN to create first administrator on server
         account.setPassword(passwordEncoder.encode(account.getPassword()));
-        account.setCountBadWords(0L);
-        account.setVisibleWords(false);
+//        account.setCountBadWords(0L);
+//        account.setVisibleWords(false);
 
 //TO DO  message to email
         accountRepo.save(account);

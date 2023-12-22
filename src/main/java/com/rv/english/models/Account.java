@@ -42,15 +42,10 @@ public class Account implements UserDetails {
     @Email
     private String email;
 
-    private String homeLang;
-
     private String activationCode;
-
-    private Long countBadWords;
 
     private Boolean active;
 
-    private Boolean visibleWords;
 
     @Transient
     public boolean isAdmin() {
