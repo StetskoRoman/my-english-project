@@ -66,7 +66,7 @@ public class WebSecurityConfig {
     @Bean
     public PasswordEncoder getPasswordEncoder() {
 //        10 value by default
-        return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder(8);
     }
 
 

@@ -4,5 +4,4 @@
 <@c.page>
     <h3> Create new account</h3>
     <@l.login "/registration" true />
-    <@l.logout/>
 </@c.page>

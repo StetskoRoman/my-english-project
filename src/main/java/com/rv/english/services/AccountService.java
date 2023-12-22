@@ -21,7 +21,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AccountService implements UserDetailsService {
 
-    @Lazy
     private final AccountRepo accountRepo;
 
     private final LibraryRepo libraryRepo;
@@ -29,8 +28,11 @@ public class AccountService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public UserDetails loadUserByUsername(String accountName) throws UsernameNotFoundException {
-        Account account = accountRepo.findByAccountName(accountName);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Account account = accountRepo.findByEmail(email);
+        System.out.println("email = " + email);
+//        System.out.println(account);
+//        System.out.println(account.toString());
         if (account == null) {
             throw new UsernameNotFoundException("User not found");
         }
@@ -47,6 +49,8 @@ public class AccountService implements UserDetailsService {
         account.setActive(true);
         account.setRoles(Collections.singletonList(AccountRoles.USER));   //change role to ADMIN to create first administrator on server
         account.setPassword(passwordEncoder.encode(account.getPassword()));
+        account.setCountBadWords(0L);
+        account.setVisibleWords(false);
 
 //TO DO  message to email
         accountRepo.save(account);

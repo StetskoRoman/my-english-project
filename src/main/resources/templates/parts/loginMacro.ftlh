@@ -5,15 +5,27 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Email:</label>
             <div class="col-sm-6">
-                <input type="email" name="email" value="<#if account??>${account.email}</#if>"
-                       class="form-control ${(emailError??)?string('is-invalid', '')}"
-                        <#--                           class="form-control ${(emailError??)?string('is-invalid', '')}"-->
-                       placeholder="some@some.com"/>
-                <#if emailError??>
-                    <div class="invalid-feedback">
-                        ${emailError}
-                    </div>
+                <#if !isRegisterForm>
+                    <input type="email" name="username"
+                           class="form-control"
+                            <#--                       cледующая ошибка для мэйла если неправильно его заполняешь, то пустое возвращает форма-->
+                            <#--                       value="<#if account??>${account.email}</#if>"-->
+                           placeholder="some@some.com"/>
                 </#if>
+
+                <#if isRegisterForm>
+                    <input type="email" name="email"
+                            <#--                       cледующая ошибка для мэйла если неправильно его заполняешь, то пустое возвращает форма-->
+                            <#--                       value="<#if account??>${account.email}</#if>"-->
+                           class="form-control ${(emptyMail??)?string('is-invalid', '')}"
+                           placeholder="some@some.com"/>
+                    <#if emptyMail??>
+                        <div class="invalid-feedback">
+                            ${emptyMail}
+                        </div>
+                    </#if>
+                </#if>
+
             </div>
         </div>
 
@@ -53,6 +65,7 @@
                 <div class="col-sm-6">
                     <#-- value="<#if account??>${account.accountName}</#if>" - если аккаунт есть в контексте? - то выполнить условие     value="<#if account??>${account.accountName}</#if>"           t-->
                     <input type="text" name="accountName"
+<#--                           value="<#if account??>${account.accountName}</#if>"-->
                            class="form-control ${(accountNameError??)?string('is-invalid', '')}"
                            placeholder="Account name"/>
                     <#if accountNameError??>

@@ -16,7 +16,7 @@
     <script src='https://www.google.com/recaptcha/api.js'></script>
   </head>
   <body>
-<#--  <#include "navbar.ftlh">-->
+  <#include "navbar.ftlh">
   <#--    сюда весь вложенный код ложиться будет-->
   <div class="container mt-5">
     <#nested>

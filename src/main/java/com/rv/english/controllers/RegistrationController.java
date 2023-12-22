@@ -28,8 +28,9 @@ public class RegistrationController {
     @PostMapping("/registration")
     public String addAccount(@Valid Account account,
                              BindingResult bindingResult,
-                             @RequestParam("password2") String passwordConfirm,
-                             Model model) {
+                             Model model,
+                             @RequestParam("password2") String passwordConfirm
+                             ) {
 
         if (account.getEmail().isEmpty()) {
             model.addAttribute("emptyMail", "you forgot to fill your email");
@@ -49,7 +50,7 @@ public class RegistrationController {
             return "registration";
         }
         if (!accountService.createAccount(account)) {
-            model.addAttribute("newUserError", "User already exist!");
+            model.addAttribute("newUserError", "User already exist on this email! ");
             return "registration";
         }
         if (bindingResult.hasErrors()) {
