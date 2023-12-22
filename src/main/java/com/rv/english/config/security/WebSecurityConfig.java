@@ -22,7 +22,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class WebSecurityConfig {
 
-//вызывают циклическую петлю
+    //вызывают циклическую петлю
     @Autowired
     private AccountService accountService;
 
@@ -46,6 +46,7 @@ public class WebSecurityConfig {
                 .logout((logout) -> logout.permitAll());
 
 
+
         return http.build();
     }
 
@@ -66,9 +67,9 @@ public class WebSecurityConfig {
     @Bean
     public PasswordEncoder getPasswordEncoder() {
 //        10 value by default
-        return new BCryptPasswordEncoder(8);
+        return new BCryptPasswordEncoder();
     }
-
+}
 
 //    @Bean
 //    public UserDetailsService userDetailsService() {
@@ -82,4 +83,4 @@ public class WebSecurityConfig {
 //        return new InMemoryUserDetailsManager(user);
 //    }
 
-}
+

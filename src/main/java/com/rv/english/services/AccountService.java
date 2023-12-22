@@ -30,9 +30,7 @@ public class AccountService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Account account = accountRepo.findByEmail(email);
-        System.out.println("email = " + email);
-//        System.out.println(account);
-//        System.out.println(account.toString());
+
         if (account == null) {
             throw new UsernameNotFoundException("User not found");
         }
