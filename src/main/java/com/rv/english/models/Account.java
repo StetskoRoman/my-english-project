@@ -7,10 +7,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -25,6 +22,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @ToString
+@EqualsAndHashCode
 public class Account implements UserDetails {
 
     @Id
@@ -63,12 +61,6 @@ public class Account implements UserDetails {
 //    id в library будет совпадать с id акка, соответственно незачем делать отдельный стобец со связью @MapsId в library добавить, тут зависимость по хожу не нужна
 //    @OneToOne(cascade = CascadeType.ALL,  mappedBy = "account")
 //    private Library library;
-
-
-    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "account")
-    private List<Photo> photos = new ArrayList<>();
-
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

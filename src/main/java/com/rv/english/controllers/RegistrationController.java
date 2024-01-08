@@ -31,7 +31,7 @@ public class RegistrationController {
                              Model model,
                              @RequestParam("password2") String passwordConfirm
                              ) {
-
+//BindingResult bindingResult between account and model necessary to work
         if (account.getEmail().isEmpty()) {
             model.addAttribute("emptyMail", "you forgot to fill your email");
             return "registration";

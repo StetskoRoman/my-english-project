@@ -2,6 +2,7 @@ package com.rv.english.controllers;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import lombok.Getter;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.stereotype.Controller;
@@ -27,4 +28,6 @@ public class LoginController {
         model.addAttribute("errorMessage", errorMessage);
         return "login";
     }
+
+
 }

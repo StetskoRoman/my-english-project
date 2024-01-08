@@ -18,18 +18,30 @@
                         <a class="nav-link" href="/">Home </a>
                     </li>
 
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/">Other link </a>
-                    </li>
+<#--                    <#if account.isAdmin??>-->
+<#--                        <li class="nav-item active">-->
+<#--                            <a class="nav-link" href="/">Other link </a>-->
+<#--                        </li>-->
+<#--                    </#if>-->
 
                     <#if account??>
                         <li class="nav-item active">
-                            <a class="nav-link" href="/">Messages </a>
+                            <a class="nav-link" href="/">Profile</a>
                         </li>
                     <#--            сюда список своих сообщений, сюда id надо подставить пользователя, проще будет в секьюрити добавить id в контекст ${} -> currentUserId появилась-->
 <#--                        <li class="nav-item active">-->
 <#--                            <a class="nav-link" href="/user-messages/${currentAccountId}">My messages</a>-->
 <#--                        </li>-->
+                    </#if>
+                    <#if account??>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/${currentAccountId}/library">My library</a>
+                        </li>
+                    </#if>
+                    <#if account??>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/">Another Link</a>
+                        </li>
                     </#if>
 
                 </ul>

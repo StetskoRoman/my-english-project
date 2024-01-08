@@ -27,5 +27,5 @@ public class Photo {
 
 //owner
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    private Account account;
+    private Profile profile;
 }
