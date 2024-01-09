@@ -9,6 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class LibraryService {
@@ -18,16 +21,25 @@ public class LibraryService {
     private final ListingRepo listingRepo;
 
 
+    public List<Listing> listListing(Long libraryId) {
+        if (libraryId != null) {
+            return listingRepo.findListingByLibraryId(libraryId);
+        } else {
+            return new ArrayList<>();
+        }
+    }
 
-    public boolean createListing(Listing listing) {
 
-        Library libraryId = listing.getLibrary();
+    public void createListing(Listing listing, Library library) {
 
+//, String listingName
 //        if (listingRepo.findByListingName(listingName) != null){
 //            return false;
 //        }
-
-        return true;
+//        listing.setListingName(listingName);
+        listing.setTotalAmountWords(0L);
+        listing.setLibrary(library);
+        listingRepo.save(listing);
     }
 
 

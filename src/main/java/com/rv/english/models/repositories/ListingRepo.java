@@ -9,5 +9,5 @@ public interface ListingRepo extends JpaRepository<Listing, Long> {
 
     Listing findByListingName(String listingName);
 
-    Listing findListingByLibraryId(Long libraryId);
+    List<Listing> findListingByLibraryId(Long libraryId);
 }

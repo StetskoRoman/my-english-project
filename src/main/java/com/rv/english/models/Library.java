@@ -25,7 +25,7 @@ public class Library {
     private Account account;
 
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "library")
     private List<Listing> listingList = new ArrayList<>();
 
     private Long totalWordsInLibrary;
