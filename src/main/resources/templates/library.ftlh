@@ -6,13 +6,13 @@
     <#if account??>
 
         <form action="/${currentAccountId}/library/createListing" method="post">
-            Create new wordlist: <input type="text" name="listingName">
+            Create new wordlist: <input type="text" name="listingName" required>
             <input type="hidden" name="_csrf" value="${_csrf.token}">
             <input type="submit" value="add new wordlist"/>
         </form><br>
 
         <#if errorMessage??>
-            <h4 style="color: green">${errorMessage}</h4>
+            <h4 style="color: gray">${errorMessage}</h4>
         <#else>
             <#list listingList as listing>
                 <div>

@@ -25,7 +25,11 @@ public class Profile {
 
     private String homeLang;
 
-    private Long countBadWords;
+    private Integer countBadWords;
+
+    private Integer countGoodWords;
+
+    private Integer countAllWordsAdded;
 
     private Boolean visibleWords;
 

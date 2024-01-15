@@ -37,27 +37,26 @@ public class AccountService  {
         account.setActive(true);
         account.setRoles(Collections.singletonList(AccountRoles.USER));   //change role to ADMIN to create first administrator on server
         account.setPassword(passwordEncoder.encode(account.getPassword()));
-//        account.setCountBadWords(0L);
-//        account.setVisibleWords(false);
 
 //TO DO  message to email
         accountRepo.save(account);
 //        create immediately library for account
         Long accountId = accountRepo.findByEmail(accountMail).getId();
-        System.out.println("acc id = "  + accountId);
+//        System.out.println("acc id = "  + accountId);
         Library library = new Library();
         library.setAccount(account);
         library.setTotalWordsInLibrary(0L);
         libraryRepo.save(library);
 
-        System.out.println("library is = " + library.toString());
-
+//        System.out.println("library is = " + library.toString());
 
         Profile profile = new Profile();
         profile.setAccount(account);
         profile.setRating(0);
         profile.setVisibleWords(false);
-        profile.setCountBadWords(0l);
+        profile.setCountBadWords(0);
+        profile.setCountGoodWords(0);
+        profile.setCountAllWordsAdded(0);
         profileRepo.save(profile);
 
         return true;

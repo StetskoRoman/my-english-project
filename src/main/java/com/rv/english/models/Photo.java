@@ -20,7 +20,7 @@ public class Photo {
     private String originalFileName;
     private Long size;
     private String contentType;
-    private boolean isPreviewImage;
+    private boolean PreviewImage;
 
     @Lob
     private byte [] bytes;

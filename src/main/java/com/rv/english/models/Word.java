@@ -1,12 +1,11 @@
 package com.rv.english.models;
 
 
+import com.rv.english.models.enums.LevelUsefulWord;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity
@@ -23,20 +22,21 @@ public class Word {
     private String wordName;
     private String explanation;
     private String example;
-    private boolean isVisibleWord;
-
-    private Long countShow;
-    private Long countAdds;
-    private Long countComplains;
-    private boolean isBadWord;
-
-    private boolean isGoodWord;
 
     private String transcription;
+//    private boolean turnOnWord;
 
-    @OneToOne
-    private Account wordAccount;
+    private boolean shownWord;
 
+    @Embedded
+    private VisibleWord visibleWord;
 
+//    @ManyToOne
+//    private Library library;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Listing listing;
+
+    private LevelUsefulWord levelUsefulWord;
 
 }
