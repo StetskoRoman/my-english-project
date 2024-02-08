@@ -1,12 +1,10 @@
 package com.rv.english.services;
 
-import com.rv.english.models.Account;
-import com.rv.english.models.Library;
-import com.rv.english.models.Listing;
+import com.rv.english.models.workModels.Library;
+import com.rv.english.models.workModels.Listing;
 import com.rv.english.models.repositories.LibraryRepo;
 import com.rv.english.models.repositories.ListingRepo;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

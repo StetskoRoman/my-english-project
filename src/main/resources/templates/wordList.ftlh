@@ -7,19 +7,23 @@
 
     <#if account??>
 
-<#--        <form action="/${currentAccountId}/library/createListing" method="post">-->
-<#--            Create new wordlist: <input type="text" name="listingName" required>-->
-<#--            <input type="hidden" name="_csrf" value="${_csrf.token}">-->
-<#--            <input type="submit" value="add new wordlist"/>-->
-<#--        </form><br>-->
-        <p><a href="/${currentAccountId}/library/${listing.getId()}/createWord" class="link-underline-success">add word</a></p>
+    <#--        <form action="/${currentAccountId}/library/createListing" method="post">-->
+    <#--            Create new wordlist: <input type="text" name="listingName" required>-->
+    <#--            <input type="hidden" name="_csrf" value="${_csrf.token}">-->
+    <#--            <input type="submit" value="add new wordlist"/>-->
+    <#--        </form><br>-->
+        <p><a href="/${currentAccountId}/library/${listing.getId()}/createWord" class="link-underline-success">add
+                word</a></p>
 
+        <#if errorMessage??>
+            <h4 style="color: gray">${errorMessage}</h4>
+        <#else>
             <#list wordList as word>
-
-                <p><b>${word.getWordName()}</b>  </p>
+                <p><b>${word.getWordName()} ${word.getExplanation()}</b> <a href="/">edit word</a></p>
             <#else>
                 <h4>Empty wordlist</h4>
             </#list>
+        </#if>
     </#if>
 </@c.page>
 

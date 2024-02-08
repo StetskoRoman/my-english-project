@@ -1,4 +1,4 @@
-package com.rv.english.models;
+package com.rv.english.models.workModels;
 
 
 import com.rv.english.models.enums.LevelUsefulWord;
@@ -20,23 +20,25 @@ public class Word {
 //there are no translations here because you need to understand what these word mean, finding right translation is a bad practice
     @NotBlank
     private String wordName;
+
+    @NotBlank
     private String explanation;
     private String example;
 
     private String transcription;
 //    private boolean turnOnWord;
 
-    private boolean shownWord;
 
-    @Embedded
-    private VisibleWord visibleWord;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Listing listing;
+
+    private LevelUsefulWord levelUsefulWord;
+}
+
 
 //    @ManyToOne
 //    private Library library;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Listing listing;
-
-    private LevelUsefulWord levelUsefulWord;
-
-}
+//    @Embedded
+//    private VisibleWord visibleWord;

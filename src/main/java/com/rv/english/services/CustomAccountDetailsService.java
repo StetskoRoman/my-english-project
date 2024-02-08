@@ -1,6 +1,6 @@
 package com.rv.english.services;
 
-import com.rv.english.models.Account;
+import com.rv.english.models.workModels.Account;
 import com.rv.english.models.repositories.AccountRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

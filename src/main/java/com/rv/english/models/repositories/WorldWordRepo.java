@@ -1,12 +1,10 @@
 package com.rv.english.models.repositories;
 
 import com.rv.english.models.workModels.Profile;
+import com.rv.english.models.workModels.WorldWord;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
-
-public interface ProfileRepo extends JpaRepository<Profile, Long> {
+public interface WorldWordRepo extends JpaRepository<WorldWord, Long> {
 
 
-    Optional<Profile> findById(Long id);
 }

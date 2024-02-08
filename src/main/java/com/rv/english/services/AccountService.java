@@ -1,14 +1,13 @@
 package com.rv.english.services;
 
-import com.rv.english.models.Account;
-import com.rv.english.models.Library;
-import com.rv.english.models.Profile;
+import com.rv.english.models.workModels.Account;
+import com.rv.english.models.workModels.Library;
+import com.rv.english.models.workModels.Profile;
 import com.rv.english.models.enums.AccountRoles;
 import com.rv.english.models.repositories.AccountRepo;
 import com.rv.english.models.repositories.LibraryRepo;
 import com.rv.english.models.repositories.ProfileRepo;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.parameters.P;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -53,7 +52,7 @@ public class AccountService  {
         Profile profile = new Profile();
         profile.setAccount(account);
         profile.setRating(0);
-        profile.setVisibleWords(false);
+        profile.setVisibleWords(true);
         profile.setCountBadWords(0);
         profile.setCountGoodWords(0);
         profile.setCountAllWordsAdded(0);

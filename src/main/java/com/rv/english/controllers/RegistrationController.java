@@ -1,7 +1,7 @@
 package com.rv.english.controllers;
 
 
-import com.rv.english.models.Account;
+import com.rv.english.models.workModels.Account;
 import com.rv.english.services.AccountService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -11,8 +11,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor

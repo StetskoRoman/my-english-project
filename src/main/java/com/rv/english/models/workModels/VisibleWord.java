@@ -1,4 +1,4 @@
-package com.rv.english.models;
+package com.rv.english.models.workModels;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;

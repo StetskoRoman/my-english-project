@@ -1,6 +1,6 @@
 package com.rv.english.models.repositories;
 
-import com.rv.english.models.Account;
+import com.rv.english.models.workModels.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

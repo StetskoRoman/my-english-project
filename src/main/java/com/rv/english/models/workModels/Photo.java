@@ -1,9 +1,8 @@
-package com.rv.english.models;
+package com.rv.english.models.workModels;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 

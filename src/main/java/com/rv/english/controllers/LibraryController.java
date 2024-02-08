@@ -1,9 +1,9 @@
 package com.rv.english.controllers;
 
 
-import com.rv.english.models.Account;
-import com.rv.english.models.Library;
-import com.rv.english.models.Listing;
+import com.rv.english.models.workModels.Account;
+import com.rv.english.models.workModels.Library;
+import com.rv.english.models.workModels.Listing;
 import com.rv.english.services.LibraryService;
 import com.rv.english.services.WordService;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @RequiredArgsConstructor
 public class LibraryController {
+
 
     private final LibraryService libraryService;
 
@@ -42,12 +43,18 @@ public class LibraryController {
                               @PathVariable Long id,
                               @PathVariable Listing listing,
                               Model model) {
-
-        if (wordService.listWords(listing.getId()).size() == 0) {
+        if (listing.getWords().size()== 0) {
             model.addAttribute("errorMessage", "Empty wordlist");
             return "wordList";
         }
-        model.addAttribute("wordList", wordService.listWords(listing.getId()));
+        model.addAttribute("wordList", listing.getWords());
+
+//        The same but through the Database
+//        if (wordService.listWords(listing.getId()).size() == 0) {
+//            model.addAttribute("errorMessage", "Empty wordlist");
+//            return "wordList";
+//        }
+//        model.addAttribute("wordList", wordService.listWords(listing.getId()));
 
         return "wordList";
 

@@ -1,7 +1,7 @@
 package com.rv.english.models.repositories;
 
-import com.rv.english.models.Library;
-import com.rv.english.models.Listing;
+import com.rv.english.models.workModels.Library;
+import com.rv.english.models.workModels.Listing;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
