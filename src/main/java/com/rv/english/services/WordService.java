@@ -5,12 +5,11 @@ import com.rv.english.models.repositories.ListingRepo;
 import com.rv.english.models.repositories.ProfileRepo;
 import com.rv.english.models.repositories.WordRepo;
 import com.rv.english.models.repositories.WorldWordRepo;
-import com.rv.english.models.workModels.Listing;
-import com.rv.english.models.workModels.VisibleWord;
-import com.rv.english.models.workModels.Word;
-import com.rv.english.models.workModels.WorldWord;
+import com.rv.english.models.workModels.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -38,13 +37,13 @@ public class WordService {
         WorldWord worldWord = new WorldWord();
         wordForSaveInListing.setListing(listing);
 
-        boolean saveOrNot = profileRepo.findById(profileId).orElse(null).getVisibleWords();
+        Optional<Profile> profile = profileRepo.findById(profileId);
+
+        boolean saveOrNot = profile.orElse(null).getVisibleWords();;
 
         if (saveOrNot == true && word.getExample() != null) {
 
-//            worldWord.setShownWord(true);
             VisibleWord visibleWord = new VisibleWord(0l, 0l, 0l, false, false);
-
             worldWord.setVisibleWord(visibleWord);
 
             if (word.getExample() != null && word.getExample().length() >= 1) {
@@ -53,18 +52,15 @@ public class WordService {
                 worldWord.setWordName(word.getWordName());
                 worldWord.setExplanation(word.getExplanation());
                 worldWord.setLevelUsefulWord(word.getLevelUsefulWord());
+                worldWord.setProfile(profile.orElse(null));
 
                 if (word.getTranscription() != null) {
                     worldWord.setTranscription(word.getTranscription());
                 } else worldWord.setTranscription("");
 
                 worldWordRepo.save(worldWord);
-
             }
-
         }
-// не выносит null badWord ...
-
 
         wordForSaveInListing.setWordName(word.getWordName());
         wordForSaveInListing.setExplanation(word.getExplanation());

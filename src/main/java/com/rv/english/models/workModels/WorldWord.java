@@ -36,6 +36,8 @@ public class WorldWord {
     private VisibleWord visibleWord;
 
     private LevelUsefulWord levelUsefulWord;
+//find appropriate method to include language detection
+    private String language;
 
 
 }

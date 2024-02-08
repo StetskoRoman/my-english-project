@@ -29,7 +29,7 @@
 
                 </div>
             <#else>
-                <h4>Empty library</h4>
+                <h4 class="text-muted">Empty library</h4>
             </#list>
         </#if>
     </#if>

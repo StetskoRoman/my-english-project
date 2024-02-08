@@ -19,11 +19,11 @@
                 <input type="text" name="explanation" id="explanation" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="example">Example:</label>
+                <label for="example">Example (advisable):</label>
                 <input type="text" name="example" id="example" class="form-control">
             </div>
             <div class="form-group">
-                <label for="transcription">Pronunciation:</label>
+                <label for="transcription">Pronunciation (doesn't required if it's not necessary):</label>
                 <input type="text" name="transcription" id="transcription" class="form-control">
             </div>
 
