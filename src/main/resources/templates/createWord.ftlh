@@ -3,13 +3,12 @@
 
 <@c.page>
 
-     <h3>Words in the ${listing.getListingName()}</h3>
+    <h3>Words in the ${listing.getListingName()}</h3>
 
     <#if account??>
-    <form action="/${currentAccountId}/library/${listing.getId()}/createWord" method="post">
+        <form action="/${currentAccountId}/library/${listing.getId()}/createWord" method="post">
 
-
-<#--do it more fashn-->
+            <#--do it more fashn-->
             <div class="form-group">
                 <label for="wordName">Word:</label>
                 <input type="text" name="wordName" id="wordName" class="form-control" required>
@@ -20,29 +19,29 @@
             </div>
             <div class="form-group">
                 <label for="example">Example (advisable):</label>
-                <input type="text" name="example" id="example" class="form-control">
+                <textarea name="example" id="example" class="form-control"></textarea>
             </div>
+
             <div class="form-group">
                 <label for="transcription">Pronunciation (doesn't required if it's not necessary):</label>
                 <input type="text" name="transcription" id="transcription" class="form-control">
             </div>
 
+            <div class="form-group">
+                <label for="levelUsefulWord">How useful word is</label>
+                <select class="form-control" id="levelUsefulWord" name="levelUsefulWord">
+                    <option value="VERY_LOW">Very Low</option>
+                    <option value="LOW">Low</option>
+                    <option value="MIDDLE">Middle</option>
+                    <option value="HIGH">High</option>
+                    <option value="MUST_HAVE">Must Have</option>
+                    <option value="BASE_WORD">Base Word</option>
+                </select>
+            </div>
 
-                <div class="form-group">
-            <label for="levelUsefulWord">How useful word is</label>
-            <select class="form-control" id="levelUsefulWord" name="levelUsefulWord">
-                <option value="VERY_LOW">Very Low</option>
-                <option value="LOW">Low</option>
-                <option value="MIDDLE">Middle</option>
-                <option value="HIGH">High</option>
-                <option value="MUST_HAVE">Must Have</option>
-                <option value="BASE_WORD">Base Word</option>
-            </select>
-        </div>
-
-        <input type="hidden" name="_csrf" value="${_csrf.token}">
-        <input type="submit" value="add new word"/>
-    </form>
+            <input type="hidden" name="_csrf" value="${_csrf.token}">
+            <input type="submit" value="add new word"/>
+        </form>
     </#if>
 </@c.page>
 
@@ -86,24 +85,3 @@
 <#--    <input type="submit" value="Add New Word" class="btn btn-primary">-->
 <#--</form>-->
 
-<#--   @NotBlank
-    private String wordName;
-    private String explanation;
-    private String example;
-
-    private String transcription;
-//    private boolean turnOnWord;
-
-    private boolean shownWord;
-
-    @Embedded
-    private VisibleWord visibleWord;
-
-    @ManyToOne
-    private Library library;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "listing_id")
-    private Listing listing;
-
-    private LevelUsefulWord levelUsefulWord;-->

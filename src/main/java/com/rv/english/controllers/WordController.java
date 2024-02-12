@@ -41,22 +41,31 @@ public class WordController {
             @Valid Word word
             ) {
 
-
         wordService.addWord(word, listing, account.getId());
 
-//        System.out.println("listing name = " + listing.getListingName());
-//        System.out.println("Listing else = " + listing.getId() + "   " + word.getExplanation()+"  name " + word.getWordName());
         return "redirect:/{id}/library/{listing}";
     }
 
     @GetMapping("/{id}/library/{listing}/{word}")
-    public String editWord(@AuthenticationPrincipal Account account,
+    public String showWord(@AuthenticationPrincipal Account account,
                            @PathVariable Listing listing,
                            @PathVariable Word word,
                            Model model) {
 
-
+        model.addAttribute("listing", listing);
+        model.addAttribute("word", word);
         return "editWord";
+    }
+
+    @PostMapping("/{id}/library/{listing}/{word}")
+    public String editWord(@AuthenticationPrincipal Account account,
+                           @PathVariable Listing listing,
+                           @PathVariable Word word) {
+
+        System.out.println("word name = " + word.getWordName() + "  id = " + word.getId() +"    " + listing.getListingName() + " all word = " + word);
+        wordService.editWord(word, listing);
+
+        return "redirect:/{id}/library/{listing}/{word}";
     }
 
 }

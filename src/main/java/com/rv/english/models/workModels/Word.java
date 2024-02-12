@@ -7,17 +7,20 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
+// почему то не работает
+//@ToString
 public class Word {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//there are no translations here because you need to understand what these word mean, finding right translation is a bad practice
+    //there are no translations here because you need to understand what these word mean, finding right translation is a bad practice
     @NotBlank
     private String wordName;
 
@@ -29,11 +32,12 @@ public class Word {
 //    private boolean turnOnWord;
 
 
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Listing listing;
 
     private LevelUsefulWord levelUsefulWord;
+
+
 }
 
 

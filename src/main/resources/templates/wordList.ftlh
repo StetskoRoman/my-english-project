@@ -2,6 +2,7 @@
 <#include "parts/security.ftlh">
 
 <@c.page>
+<#--   подчеркнуто потому как в контроллере мередавал только, но все работает, хз почему "wordList", listing.getWords()-->
     <h3>Words in "${listing.getListingName()}"</h3>
 
     <#if account??>
@@ -22,21 +23,12 @@
                                      : &emsp; ${word.getExplanation()} </h5>
 <#--                                <p class="card-text">${word.getExplanation()}</p>-->
                                 <p class="card-text"></p>
-                                <a href="/" class="card-link">edit word</a>
+                                <a href="/${currentAccountId}/library/${listing.getId()}/${word.getId()}" class="card-link">Examples</a>
+                                <a href="/${currentAccountId}/library/${listing.getId()}/${word.getId()}/editWord" class="card-link">edit word</a>
                             </div>
                         </div>
                     </div>
-<#--                    <div class="col-md-6">-->
-<#--                        <div class="card">-->
-<#--                            <div class="card-body">-->
-<#--&lt;#&ndash;                                <h5 class="card-title">Examples</h5>&ndash;&gt;-->
-<#--&lt;#&ndash;                                <hr>&ndash;&gt;-->
-<#--                                <h5 class="card-text">${word.getExplanation()}</h5>-->
-<#--&lt;#&ndash;                                <p class="card-text">${word.getExample()}</p>&ndash;&gt;-->
 
-<#--                            </div>-->
-<#--                        </div>-->
-<#--                    </div>-->
                 </div>
             </#list>
             <#if wordList?size == 0>
@@ -48,6 +40,18 @@
     </#if>
 </@c.page>
 
+
+<#--                    <div class="col-md-6">-->
+<#--                        <div class="card">-->
+<#--                            <div class="card-body">-->
+<#--&lt;#&ndash;                                <h5 class="card-title">Examples</h5>&ndash;&gt;-->
+<#--&lt;#&ndash;                                <hr>&ndash;&gt;-->
+<#--                                <h5 class="card-text">${word.getExplanation()}</h5>-->
+<#--&lt;#&ndash;                                <p class="card-text">${word.getExample()}</p>&ndash;&gt;-->
+
+<#--                            </div>-->
+<#--                        </div>-->
+<#--                    </div>-->
 
 <#--    <#list wordList as word>
                 <div class="card mb-3">

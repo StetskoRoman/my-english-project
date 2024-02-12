@@ -7,12 +7,14 @@ import com.rv.english.models.repositories.WordRepo;
 import com.rv.english.models.repositories.WorldWordRepo;
 import com.rv.english.models.workModels.*;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class WordService {
 
     private final WordRepo wordRepo;
@@ -82,12 +84,48 @@ public class WordService {
         listingRepo.save(listing);
     }
 
-    public void editWord(Word word) {
+    public void editWord(Word word, Listing listing) {
 
+        Word changedWord = wordRepo.findById(word.getId()).orElse(new Word());
 
+        log.info("in Service " + changedWord.getId() + "  " +  changedWord.getWordName());
+
+        changedWord.setListing(listing);
+        changedWord.setWordName(word.getWordName());
+        changedWord.setLevelUsefulWord(word.getLevelUsefulWord());
+        changedWord.setExplanation(word.getExplanation());
+        changedWord.setExample(word.getExample());
+
+        log.info("After changing " + changedWord.getId() + "  " + changedWord.getWordName() + "  list " + changedWord.getListing());
+
+        wordRepo.save(changedWord);
+        listingRepo.save(listing);
 
     }
-
 }
+
+//        Word changedWord = wordRepo.findById(wordId).orElse(null);
+//        changedWord.setListing(listing);
+//        changedWord.setWordName(wordId);
+//        System.out.println(changedWord);
+
+//        word.setWordName(word.getWordName());
+//        word.setExplanation(word.getExplanation());
+//
+//        if (word.getExample() != null) {
+//            word.setExample(word.getExample());
+//        } else word.setExample("");
+//
+//        if (word.getTranscription() != null) {
+//            word.setTranscription(word.getTranscription());
+//        } else word.setTranscription("");
+////        System.out.println("word = "  + word);
+//        wordRepo.save(word);
+//        listingRepo.save(listing);
+
+//word.setTranscription(word.getTranscription());
+//        Word changedWord = new Word();
+//        changedWord.setListing(listing);
+//        changedWord.setExample(word.getExample());
 
 //            if (word.getExample() != "" && word.getExplanation() != "") {

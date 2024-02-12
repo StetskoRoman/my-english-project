@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+//@ToString
 public class Listing {
 
     @Id
@@ -24,10 +24,7 @@ public class Listing {
     private String listingName;
 
     private Long totalAmountWords;
-    //(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "listing")
-//     @JoinColumn(name = "word_id")
-//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    mappedBy = "listing"
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,  mappedBy = "listing")
     private List<Word> words = new ArrayList<>();
 
@@ -35,6 +32,9 @@ public class Listing {
     private Library library;
 
 
-
-
 }
+
+//(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "listing")
+//     @JoinColumn(name = "word_id")
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    mappedBy = "listing"
