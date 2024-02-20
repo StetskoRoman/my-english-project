@@ -24,7 +24,7 @@ public class WordService {
     private final ProfileRepo profileRepo;
     private final WorldWordRepo worldWordRepo;
 
-// как будто бы не стоит лишний раз лезть в БД, особенном в поисках слов, лучше напрямую их подгружать (mappedBy и eager справляются вроде...)
+// как будто бы не стоит лишний раз лезть в БД, особенном в поисках слов, лучше напрямую их подгружать
 //    public List<Word> listWords(Long listingId) {
 //        if (listingId != null) {
 //            return wordRepo.findByListingId(listingId);
@@ -34,14 +34,15 @@ public class WordService {
 //    }
 
     public void addWord(Word word, Listing listing, Long profileId) {
-// при изменении word напрямую вместо вставки нового просто вставлял новое слово на место старого, метод save() не помогал
+
         Word wordForSaveInListing = new Word();
         WorldWord worldWord = new WorldWord();
         wordForSaveInListing.setListing(listing);
 
         Optional<Profile> profile = profileRepo.findById(profileId);
 
-        boolean saveOrNot = profile.orElse(null).getVisibleWords();;
+        boolean saveOrNot = profile.orElse(null).getVisibleWords();
+        ;
 
         if (saveOrNot == true && word.getExample() != null) {
 
@@ -80,28 +81,29 @@ public class WordService {
 
         wordRepo.save(wordForSaveInListing);
 
-        listing.setTotalAmountWords(listing.getTotalAmountWords()+1);
+        listing.setTotalAmountWords(listing.getTotalAmountWords() + 1);
         listingRepo.save(listing);
     }
 
-    public void editWord(Word word, Listing listing) {
-
-        Word changedWord = wordRepo.findById(word.getId()).orElse(new Word());
-
-        log.info("in Service " + changedWord.getId() + "  " +  changedWord.getWordName());
-
-        changedWord.setListing(listing);
-        changedWord.setWordName(word.getWordName());
-        changedWord.setLevelUsefulWord(word.getLevelUsefulWord());
-        changedWord.setExplanation(word.getExplanation());
-        changedWord.setExample(word.getExample());
-
-        log.info("After changing " + changedWord.getId() + "  " + changedWord.getWordName() + "  list " + changedWord.getListing());
-
-        wordRepo.save(changedWord);
-        listingRepo.save(listing);
-
-    }
+//    public void editWord(Word word, Listing listing) {
+//
+//        Word changedWord = wordRepo.findById(word.getId()).orElse(new Word());
+//
+//        log.info("in Service " + changedWord.getId() + "  " +  changedWord.getWordName());
+//
+//        changedWord.setListing(listing);
+////        changedWord.setWordName(word.getWordName());
+//        changedWord.setWordName("SomeOther name");
+//        changedWord.setLevelUsefulWord(word.getLevelUsefulWord());
+//        changedWord.setExplanation(word.getExplanation());
+//        changedWord.setExample(word.getExample());
+//
+//        log.info("After changing " + changedWord.getId() + "  " + changedWord.getWordName() + "  list " + changedWord.getListing());
+//
+//        wordRepo.save(changedWord);
+//        listingRepo.save(listing);
+//
+//    }
 }
 
 //        Word changedWord = wordRepo.findById(wordId).orElse(null);

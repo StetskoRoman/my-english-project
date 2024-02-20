@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequiredArgsConstructor
 public class LibraryController {
 
-
     private final LibraryService libraryService;
 
     private final WordService wordService;

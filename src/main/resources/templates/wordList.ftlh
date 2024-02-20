@@ -2,7 +2,7 @@
 <#include "parts/security.ftlh">
 
 <@c.page>
-<#--   подчеркнуто потому как в контроллере мередавал только, но все работает, хз почему "wordList", listing.getWords()-->
+<#--   подчеркнуто потому как в контроллере передавал только, но все работает, хз почему "wordList", listing.getWords()-->
     <h3>Words in "${listing.getListingName()}"</h3>
 
     <#if account??>

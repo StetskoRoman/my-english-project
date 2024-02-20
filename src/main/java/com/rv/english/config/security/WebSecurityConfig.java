@@ -58,7 +58,6 @@ public class WebSecurityConfig {
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-//        пароль зашифруется по ходу
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
         daoAuthenticationProvider.setUserDetailsService(customAccountDetailsService);
         return daoAuthenticationProvider;
@@ -66,7 +65,6 @@ public class WebSecurityConfig {
 
     @Bean
     public PasswordEncoder getPasswordEncoder() {
-//        10 value by default
         return new BCryptPasswordEncoder();
     }
 }

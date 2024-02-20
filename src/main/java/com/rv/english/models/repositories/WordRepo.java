@@ -9,6 +9,7 @@ public interface WordRepo extends JpaRepository<Word, Long> {
 
 //    List<Word> findByLibraryId(Long libraryId);
 
+
     List<Word> findByWordName(String wordName);
 
     List<Word> findByListingId(Long listingId);
